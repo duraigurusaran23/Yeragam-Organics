@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeragam Sugarcane Juice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #006400; /* Match footer background color */
+            color: white;
+            display: flex;
+            align-items: center; /* Center vertically */
+            padding: 20px; /* Adjusted padding */
+            justify-content: space-between; /* Space between logo and title */
+        }
+
+        header img {
+            max-width: 150px; /* Adjust the size of the logo */
+            margin-right: 20px; /* Space between logo and text */
+            border: 4px solid white; /* White border around the logo */
+            border-radius: 10px; /* Optional: round the corners of the border */
+            padding: 5px; /* Space between image and border */
+        }
+
+        header div {
+            flex-grow: 1; /* Allow this div to grow and take available space */
+            text-align: center; /* Center text */
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        header p {
+            font-size: 1.5em;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .product-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px 20px;
+        }
+
+        .product {
+            position: relative; /* Added for positioning the out-of-stock sticker */
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+            width: 300px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* Ensure border is within the box */
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            border: 4px solid white; /* Thicker white border around images */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to image for prominence */
+        }
+
+        .out-of-stock {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-details {
+            padding: 15px;
+        }
+
+        .product-details h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .product-details p {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #006400;
+        }
+
+        footer {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .order-button {
+            text-align: center;
+            margin: 40px;
+        }
+
+        .order-button a {
+            background-color: #006400;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .order-button a:hover {
+            background-color: #004d00;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="images/Yeragam Logo.png" alt="Yeragam Logo">
+        <div>
+            <h1>Yeragam Sugarcane Juice</h1>
+            <p>Fresh, Organic, and Naturally Sweetened</p>
+        </div>
+    </header>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="product">
+            <img src="images/jaggery.jpg" alt="Jaggery">
+            <div class="product-details">
+                <h2>Natural Jaggery</h2>
+                <p>Price: ₹100</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="images/sathukkudi.jpg" alt="Sathukkudi">
+            <div class="out-of-stock">Out of Stock</div> <!-- Added Out of Stock sticker -->
+            <div class="product-details">
+                <h2>Sathukkudi</h2>
+                <p>Price: ₹80</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Button -->
+    <div class="order-button">
+        <a href="ORDER.html">Place Your Order Now</a>
+    </div>
+
+    <!-- Contact Section -->
+    <footer>
+        <p>Open Daily: 06:00 AM - 06:00 PM</p>
+        <p>Contact: 9790105067</p>
+        <p>Address: Pullambadi Main Road, Thirumazhapadi</p>
+    </footer>
+
+</body>
+
+</html>
