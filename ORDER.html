@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('public/images/backgroundimage.jpg'); /* Correct relative path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .order-form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .order-form h2 {
+            text-align: center;
+            color: #006400;
+        }
+
+        .order-form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .order-form input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-button {
+            background-color: #006400;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #004d00;
+        }
+
+        .total-price {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 0; /* Set to 0 for no space */
+        }
+
+        .price-verification {
+            margin-top: 5px; /* Slight margin for separation */
+            display: flex;
+            align-items: center; /* Center align items vertically */
+        }
+
+        .price-verification input[type="checkbox"] {
+            width: 16px; /* Adjust width */
+            height: 16px; /* Adjust height */
+            margin-right: 5px; /* Space between checkbox and text */
+            transform: scale(0.8); /* Scale down the checkbox */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+    </style>
+    <script>
+        function showProductQuantity() {
+            var product = document.getElementById("product").value;
+
+            // Hide all quantity sections
+            document.getElementById("jaggery-quantity").style.display = "none";
+            document.getElementById("sathukkudi-quantity").style.display = "none";
+            document.getElementById("both-quantity").style.display = "none";
+
+            // Disable all quantity inputs
+            document.getElementById("jaggeryQuantity").required = false;
+            document.getElementById("sathukkudiQuantity").required = false;
+            document.getElementById("jaggeryQuantityBoth").required = false;
+            document.getElementById("sathukkudiQuantityBoth").required = false;
+
+            // Show relevant quantity fields and make them required based on selection
+            if (product === "jaggery") {
+                document.getElementById("jaggery-quantity").style.display = "block";
+                document.getElementById("jaggeryQuantity").required = true;
+            } else if (product === "sathukkudi") {
+                document.getElementById("sathukkudi-quantity").style.display = "block";
+                document.getElementById("sathukkudiQuantity").required = true;
+            } else if (product === "both") {
+                document.getElementById("both-quantity").style.display = "block";
+                document.getElementById("jaggeryQuantityBoth").required = true;
+                document.getElementById("sathukkudiQuantityBoth").required = true;
+            }
+
+            calculateTotalPrice(); // Recalculate the price when product changes
+        }
+
+        function calculateTotalPrice() {
+            var product = document.getElementById("product").value;
+            var jaggeryQuantity = parseFloat(document.getElementById("jaggeryQuantity").value) || 0;
+            var sathukkudiQuantity = parseFloat(document.getElementById("sathukkudiQuantity").value) || 0;
+            var jaggeryQuantityBoth = parseFloat(document.getElementById("jaggeryQuantityBoth").value) || 0;
+            var sathukkudiQuantityBoth = parseFloat(document.getElementById("sathukkudiQuantityBoth").value) || 0;
+
+            var jaggeryPrice = 100; // Price per kg for jaggery
+            var sathukkudiPrice = 80; // Price per kg for sathukkudi
+
+            var totalPrice = 0;
+
+            if (product === "jaggery") {
+                totalPrice = jaggeryQuantity * jaggeryPrice;
+            } else if (product === "sathukkudi") {
+                totalPrice = sathukkudiQuantity * sathukkudiPrice;
+            } else if (product === "both") {
+                totalPrice = (jaggeryQuantityBoth * jaggeryPrice) + (sathukkudiQuantityBoth * sathukkudiPrice);
+            }
+
+            document.getElementById("total-price").innerText = "Total Amount: ₹" + totalPrice;
+        }
+
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            if (!document.getElementById("price-confirmation").checked) {
+                alert("Please confirm the total price before submitting.");
+                return;
+            }
+
+            var formData = new FormData(document.querySelector("form"));
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://script.google.com/macros/s/AKfycbydr2Q8UGEAWAiiTNPOvVB9UlYyCNBM7_eczNlevK4jMgmuQDk2f36WJaI7ggGiZCIS/exec"); // Updated Apps Script URL
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        alert("Thank You For Ordering In YERAGAM🙏🏻                                          Your order has been submitted.");
+                        document.querySelector("form").reset();
+                        document.getElementById("total-price").innerText = "";
+                    } else {
+                        alert("There was a problem with the submission. Please try again.");
+                    }
+                }
+            };
+
+            xhr.send(formData); // Send the form data to Google Apps Script
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="order-form">
+        <h2>Place Your Order</h2>
+        <form onsubmit="submitForm(event);">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="product">Product:</label>
+            <select id="product" name="product" onchange="showProductQuantity()" required>
+                <option value="" disabled selected>Select a product</option>
+                <option value="jaggery">Jaggery</option>
+                <option value="sathukkudi">Sathukkudi</option>
+                <option value="both">Both</option>
+            </select>
+
+            <div id="jaggery-quantity" style="display:none;">
+                <label for="jaggeryQuantity">Jaggery Quantity (kg):</label>
+                <input type="number" id="jaggeryQuantity" name="jaggeryQuantity" min="1" oninput="calculateTotalPrice()" required>
+            </div>
+
+            <div id="sathukkudi-quantity" style="display:none;">
+                <label for="sathukkudiQuantity">Sathukkudi Quantity (kg):</label>
+                <input type="number" id="sathukkudiQuantity" name="sathukkudiQuantity" min="1" oninput="calculateTotalPrice()" required>
+            </div>
+
+            <div id="both-quantity" style="display:none;">
+                <label for="jaggeryQuantityBoth">Jaggery Quantity (kg):</label>
+                <input type="number" id="jaggeryQuantityBoth" name="jaggeryQuantityBoth" min="1" oninput="calculateTotalPrice()" required>
+                <label for="sathukkudiQuantityBoth">Sathukkudi Quantity (kg):</label>
+                <input type="number" id="sathukkudiQuantityBoth" name="sathukkudiQuantityBoth" min="1" oninput="calculateTotalPrice()" required>
+            </div>
+
+            <p id="total-price" class="total-price"></p>
+            <div class="price-verification">
+                <input type="checkbox" id="price-confirmation" required>
+                <label for="price-confirmation">The Total Amount is Verified.</label>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Order</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

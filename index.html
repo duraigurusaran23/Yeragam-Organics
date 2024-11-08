@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeragam Sugarcane Juice</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="images/Yeragam Logo.png" alt="Yeragam Logo" id="logo">
+        <div>
+            <h1>Yeragam Organics</h1>
+            <p>Fresh, Organic, and Naturally Sweetened</p>
+        </div>
+    </header>
+
+    <section class="product-section">
+        <div class="product">
+            <img src="images/jaggery.jpg" alt="Jaggery">
+            <div class="product-details">
+                <h2>Natural Jaggery</h2>
+                <p>Price: ₹100</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="images/sathukkudi.jpg" alt="Sathukkudi">
+            <div class="product-details">
+                <h2>Sathukkudi</h2>
+                <p>Price: ₹80</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="order-button">
+        <a href="ORDER.html">Place Your Order</a>
+    </div>
+
+    <footer>
+        <p>Open Daily: 06:00 AM - 06:00 PM</p>
+        <p>Contact: 9790105067</p>
+        <p>Address: Pullambadi Main Road, Thirumazhapadi</p>
+    </footer>
+
+    <!-- Fullscreen Modal for Logo -->
+    <div class="fullscreen-modal" id="logoModal">
+        <img src="images/Yeragam Logo.png" alt="Yeragam Logo" id="fullscreenLogo">
+    </div>
+
+    <script>
+        // Open logo in fullscreen on click
+        const logo = document.getElementById("logo");
+        const logoModal = document.getElementById("logoModal");
+
+        logo.addEventListener("click", function () {
+            logoModal.classList.add("active");
+        });
+
+        logoModal.addEventListener("click", function () {
+            logoModal.classList.remove("active");
+        });
+    </script>
+
+</body>
+
+</html>
